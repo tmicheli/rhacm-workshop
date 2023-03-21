@@ -53,10 +53,9 @@ This takes approx. 45 minutes.
 == Cluster Sets and RBACs
 To create different groups of clusters, RHACM defines the concept of cluster sets, represented by the ClusterSet object. A cluster set labels all the clusters that belong to it with the cluster.open-cluster-management.io/clusterset=managed_clusterset_name label. RHACM uses this label to identify the clusters that belong to the cluster set, enabling you to take action on all the member clusters at once.
 
-[cols="1,1"]
+[cols="1,1",]
 |===
-| Role
-| Definition
+| Role | Definition
 
 | open-cluster-management:cluster-manager-admin
 | RHACM super user, with full access. Can create a ManagedCluster resource.
@@ -77,6 +76,21 @@ To create different groups of clusters, RHACM defines the concept of cluster set
 | Can create Git subscriptions that deploy Kubernetes resources YAML files to multiple namespaces.
 |===
 
+RHACM supports the following RHOCP roles
+[cols="1,1"]
+|===
+|Role |Defintion
+
+| cluster-admin
+| RHOCP super user
+
+| admin
+.3+| RHOCP default roles. A user with a namespace-scoped binding to these roles has access to open-cluster-management resources in a specific namespace.
+
+| edit 
+
+| viewer
+|===
 == Observability
 
 
