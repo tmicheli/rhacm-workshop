@@ -1,0 +1,14 @@
+= Red Hat Advanced Cluster Manager (RHACM) workshop
+Tobias Michelis <tobias.michelis@redhat.com>
+:description: A workshop to show the usage of RHACM
+
+
+== Cluster Lifecycle
+
+== Observability
+
+== Cluster Sets and RBACs
+
+== Policies
+
+== Compliance
