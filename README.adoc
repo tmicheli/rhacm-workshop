@@ -4,11 +4,85 @@ Tobias Michelis <tobias.michelis@redhat.com>
 
 
 == Cluster Lifecycle
+=== Centrally manage clusters
+==== Add a provider connectoin
+On the left bar, select *Credentials* and then select *Add credentials*
+image::pictures/credentials.jpeg[]
+
+You will need to provide the connection details
+
+[cols="1,1"]
+|===
+|Credential type
+| Choose *Amazon Web Services*
+
+| Credential Name
+| aws
+
+| Namespace
+| open-cluster-management
+
+| Access Key
+| Provided
+
+|Secret Access Key ID
+| Provided
+|===
+
+Click *Next*. Verify the information and click *ADD*
+
+==== Create a new OpenShift Cluster on AWS
+
+1. From *Clusters* page, select *Create Cluster*
+1. Select *Amazon Web Services* and then *Standalone*
+1. Add *Cluster name*. Leave *Cluster Set* empty
+1. Select *Release Image*
+1. Add label *environment=prod*
+1. Set Region to *eu-west-2*
+
+Click *Next*. Sleect *7 - Review and create*. Click *Create*.
+
+This takes approx. 45 minutes.
+
+=== Search find and modify K8s resources
+1. Navigate to the ACM console
+1. Click on the *Search* Icon in the upper right corner
+1. Explore
+
+
+== Cluster Sets and RBACs
+To create different groups of clusters, RHACM defines the concept of cluster sets, represented by the ClusterSet object. A cluster set labels all the clusters that belong to it with the cluster.open-cluster-management.io/clusterset=managed_clusterset_name label. RHACM uses this label to identify the clusters that belong to the cluster set, enabling you to take action on all the member clusters at once.
+
+[cols="1,1"]
+|===
+| Role
+| Definition
+
+| open-cluster-management:cluster-manager-admin
+| RHACM super user, with full access. Can create a ManagedCluster resource.
+
+| open-cluster-management:admin:managed_cluster_name
+| RHACM administrator access to the ManagedCluster resource named _managed_cluster_name_.
+
+| open-cluster-management:view:managed_cluster_name	
+| RHACM view access to the ManagedCluster resource named _managed_cluster_name_.
+
+| open-cluster-management:managedclusterset:admin:managed_clusterset_name
+| RHACM administrator access to the _ManagedClusterSet_ resource named _managed_clusterset_name_.
+
+| open-cluster-management:managedclusterset:view:managed_clusterset_name
+| RHACM view access to the ManagedClusterSet resource named _managed_clusterset_name_.
+
+| open-cluster-management:subscription-admin	
+| Can create Git subscriptions that deploy Kubernetes resources YAML files to multiple namespaces.
+|===
 
 == Observability
 
-== Cluster Sets and RBACs
 
 == Policies
 
 == Compliance
+
+== Multicluster networking
+
